@@ -1,0 +1,3 @@
+Estimado {!Cotizacion_Academica__c.OwnerFullName}: ¡Buenas noticias! Su reciente solicitud de descuento ha sido aprobada. Inicie sesión en su organización para obtener más detalles.
+
+Cotizacion aprobada: {!Cotizacion_Academica__c.Name}

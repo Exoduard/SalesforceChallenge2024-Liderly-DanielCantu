@@ -32,5 +32,12 @@
         <members>*</members>
         <name>StaticResource</name>
     </types>
+    <types>
+        <members>Cotizaciones/AprobacionCotizacionVF</members>
+        <members>Cotizaciones/Cotizacion_Aprobada</members>
+        <members>Cotizaciones/Cotizacion_Rechazada</members>
+        <members>Cotizaciones/CotizacionPDF</members>
+        <name>EmailTemplate</name>
+    </types>
     <version>62.0</version>
 </Package>

@@ -69,8 +69,6 @@ private class CotizacionAcademicaTriggerTest {
 ## ✉️ Contacto
 Daniel Eduardo Cantu Moreno
 - LinkedIn: https://www.linkedin.com/in/danielecm/
-- Email: danielcantu000@gmail.com
-
 ---
 *Desarrollado como parte del Reto Final Liderly*
 

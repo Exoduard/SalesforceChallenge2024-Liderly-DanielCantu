@@ -1,0 +1,76 @@
+<apex:page standardController="Cotizacion_Academica__c" 
+           extensions="CotizacionPDFController" 
+           renderAs="pdf" 
+           applyBodyTag="false">
+    <head>
+        <style type="text/css">
+            .header { text-align: center; margin-bottom: 20px; }
+            .info-section { margin: 15px 0; }
+            .table { width: 100%; border-collapse: collapse; }
+            .table th, .table td { 
+                border: 1px solid #ddd; 
+                padding: 8px;
+                text-align: left;
+            }
+            .total { font-weight: bold; }
+        </style>
+    </head>
+    
+    <body>
+        <div class="header">
+            <h1>Cotización Académica</h1>
+            <p>Folio: {!cotizacion.Name}</p>
+        </div>
+        
+        <div class="info-section">
+            <h2>Información del Estudiante</h2>
+            <p>Nombre: {!cotizacion.Estudiante__r.Name}</p>
+            <p>Sede: {!cotizacion.Sede__c}</p>
+            <p>Materias: {!cotizacion.Cantidad_Materias__c}</p>
+        </div>
+        
+        <div class="info-section">
+            <h2>Desglose de Costos</h2>
+            <p>Subtotal: ${!cotizacion.Subtotal_Sin_Descuentos__c}</p>
+            
+            <h3>Becas Aplicadas:</h3>
+            <apex:outputPanel rendered="{!cotizacion.Beca_Excelencia__c}">
+                <p>- Beca de Excelencia (10%)</p>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!cotizacion.Beca_Deportiva__c}">
+                <p>- Beca Deportiva (10%)</p>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!cotizacion.Beca_Familiar_Docente__c}">
+                <p>- Beca Familiar Docente (30%)</p>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!cotizacion.Beca_Necesidad_Economica__c}">
+                <p>- Beca por Necesidad Económica (30%)</p>
+            </apex:outputPanel>
+            
+            <p>Descuento Total: {!cotizacion.Descuento_Total_Porcentaje__c}%</p>
+            <p class="total">Monto Final: ${!cotizacion.Total_Final__c}</p>
+        </div>
+        
+        <div class="info-section">
+            <h2>Calendario de Pagos</h2>
+            <table class="table">
+                <tr>
+                    <th>Concepto</th>
+                    <th>Fecha</th>
+                    <th>Monto</th>
+                </tr>
+                <apex:repeat value="{!fechasPago}" var="pago">
+                    <tr>
+                        <td>{!pago.concepto}</td>
+                        <td>
+                            <apex:outputText value="{0,date,dd/MM/yyyy}">
+                                <apex:param value="{!pago.fecha}" />
+                            </apex:outputText>
+                        </td>
+                        <td>${!pago.monto}</td>
+                    </tr>
+                </apex:repeat>
+            </table>
+        </div>
+    </body>
+</apex:page>
